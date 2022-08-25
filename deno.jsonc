@@ -1,0 +1,49 @@
+{
+	"$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
+	"lint": {
+		"files": {
+			"include": [
+				"components/",
+				"islands/",
+				"routes/",
+				"main.ts",
+				"dev.ts"
+			],
+			"exclude": []
+		},
+		"rules": {
+			"tags": [
+				"recommended"
+			],
+			"include": [
+				"ban-untagged-todo"
+			],
+			"exclude": [
+				"no-unused-vars"
+			]
+		}
+	},
+	"fmt": {
+		"files": {
+			"include": [
+				"components/",
+				"islands/",
+				"routes/",
+				"main.ts",
+				"dev.ts"
+			],
+			"exclude": []
+		},
+		"options": {
+			"indentWidth": 4,
+			"lineWidth": 80,
+			"proseWrap": "preserve",
+			"singleQuote": true,
+			"useTabs": true
+		}
+	},
+	"tasks": {
+		"start": "deno run -A --watch=static/,routes/ dev.ts"
+	},
+	"importMap": "./import_map.json"
+}
