@@ -4,7 +4,6 @@
 	"editor.defaultFormatter": "denoland.vscode-deno",
 	"files.insertFinalNewline": true,
 	"files.trimFinalNewlines": false,
-	"prettier.enable": false,
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features",
 		"editor.quickSuggestions": {
