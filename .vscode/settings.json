@@ -1,5 +1,34 @@
 {
-  "deno.enable": true,
-  "deno.lint": true,
-  "editor.defaultFormatter": "denoland.vscode-deno"
+	"deno.enable": true,
+	"deno.lint": true,
+	"editor.defaultFormatter": "denoland.vscode-deno",
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": false,
+	"prettier.enable": false,
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features",
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"editor.suggest.insertMode": "replace",
+		"gitlens.codeLens.scopes": [
+			"document"
+		],
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features",
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"editor.suggest.insertMode": "replace",
+		"gitlens.codeLens.scopes": [
+			"document"
+		]
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "denoland.vscode-deno"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "denoland.vscode-deno"
+	}
 }
