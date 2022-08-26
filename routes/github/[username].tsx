@@ -8,7 +8,7 @@ interface IGithubUser {
 	name: string;
 }
 
-export const handler: Handlers<IGithubUser | null> = {
+export const handler: Handlers<IGithubUser> = {
 	GET: async (_, ctx) => {
 		const { username } = ctx.params;
 
