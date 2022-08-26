@@ -1,8 +1,7 @@
 /** @jsx h */
+import type { Handlers } from '$fresh/server.ts';
 import { h } from 'preact';
 import Counter from '../islands/Counter.tsx';
-
-import { Handlers } from '$fresh/server.ts';
 
 export const handler: Handlers = {
 	GET: async (req, ctx) => {
