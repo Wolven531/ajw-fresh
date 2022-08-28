@@ -16,17 +16,27 @@ export const handler: Handlers<IResponseData> = {
 		const normalized = query.trim().toLowerCase();
 		const results = NAMES.filter((name) => name.includes(normalized));
 
-		return ctx.render({ results, query });
+		return ctx.render({ query, results });
+	},
+	POST: async (req, ctx) => {
+		const form = await req.formData();
+
+		const query = form.get('q')?.valueOf() as string ?? '';
+		const normalized = query.trim().toLowerCase();
+		const results = NAMES.filter((name) => name.includes(normalized));
+
+		return ctx.render({ query, results });
 	},
 };
 
 export default function SearchPage({ data }: PageProps<IResponseData>) {
-	const { results, query } = data;
+	const { query, results } = data;
 
 	return (
 		<div>
-			<form action='search'// TODO(@wolven531) - why does specifying method attribute break form w/ a HTTP 405 response?
-				// method='POST'
+			<form
+				action='search'
+				method='POST'
 			>
 				<input type='text' name='q' value={query} />
 				<button type='submit'>Search</button>
