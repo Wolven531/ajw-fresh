@@ -24,7 +24,7 @@ export const handler: Handlers<IGithubUser> = {
 	},
 };
 
-export default function Page({ data }: PageProps<IGithubUser>) {
+export default function GithubSearchPage({ data }: PageProps<IGithubUser>) {
 	if (!data) {
 		return <h1>User not found</h1>;
 	}

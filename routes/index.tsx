@@ -15,7 +15,7 @@ export const handler: Handlers = {
 	},
 };
 
-export default function Home() {
+export default function HomePage() {
 	return (
 		<div>
 			<img

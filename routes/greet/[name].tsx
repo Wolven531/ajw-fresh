@@ -2,6 +2,6 @@
 import type { PageProps } from '$fresh/server.ts';
 import { h } from 'preact';
 
-export default function Greet(props: PageProps) {
+export default function GreetPage(props: PageProps) {
 	return <div>Hello {props.params.name}</div>;
 }
