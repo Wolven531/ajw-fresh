@@ -32,7 +32,7 @@ export default function Countdown(props: { targetTimestamp: string }) {
 				(targetTimestamp - runningTimestamp) / 1000,
 			),
 			'seconds',
-		), [runningTimestamp, targetTimestamp, timeFmt]);
+		), [runningTimestamp, targetTimestamp]);
 
 	// if target has passed, stop counting down
 	if (runningTimestamp > targetTimestamp) {
