@@ -1,6 +1,6 @@
 /** @jsx h */
 import { h } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
 
 const timeFmt = new Intl.RelativeTimeFormat('en-US');
 
@@ -25,15 +25,19 @@ export default function Countdown(props: { targetTimestamp: string }) {
 		return () => clearInterval(timer);
 	}, [props.targetTimestamp]);
 
+	// format remaining time using `Intl.RelativeTimeFormat`
+	const secondsLeft = useMemo(() =>
+		timeFmt.format(
+			Math.floor(
+				(targetTimestamp - runningTimestamp) / 1000,
+			),
+			'seconds',
+		), [runningTimestamp, targetTimestamp, timeFmt]);
+
 	// if target has passed, stop counting down
 	if (runningTimestamp > targetTimestamp) {
 		return <span>🎉</span>;
 	}
 
-	// format remaining time using `Intl.RelativeTimeFormat`
-	const secondsLeft = Math.floor(
-		(targetTimestamp - runningTimestamp) / 1000,
-	);
-
-	return <span>{timeFmt.format(secondsLeft, 'seconds')}</span>;
+	return <span>{secondsLeft}</span>;
 }
