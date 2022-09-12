@@ -1,7 +1,4 @@
-/** @jsx h */
 import type { Handlers, PageProps } from '$fresh/server.ts';
-import { h } from 'preact';
-
 const NAMES = ['alice', 'bob', 'charlie', 'dave', 'eve', 'frank'].sort();
 
 interface IResponseData {

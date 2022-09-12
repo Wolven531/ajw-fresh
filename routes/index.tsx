@@ -1,6 +1,4 @@
-/** @jsx h */
 import type { Handlers } from '$fresh/server.ts';
-import { h } from 'preact';
 import Counter from '../islands/Counter.tsx';
 
 export const handler: Handlers = {

@@ -1,6 +1,4 @@
-/** @jsx h */
 import type { Handlers, PageProps } from '$fresh/server.ts';
-import { h } from 'preact';
 
 interface IGithubUser {
 	avatar_url: string;
