@@ -1,27 +1,8 @@
 {
 	"$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
-	"lint": {
-		"files": {
-			"include": [
-				"components/",
-				"islands/",
-				"routes/",
-				"main.ts",
-				"dev.ts"
-			],
-			"exclude": []
-		},
-		"rules": {
-			"tags": [
-				"recommended"
-			],
-			"include": [
-				"ban-untagged-todo"
-			],
-			"exclude": [
-				"no-unused-vars"
-			]
-		}
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
 	},
 	"fmt": {
 		"files": {
@@ -29,8 +10,8 @@
 				"components/",
 				"islands/",
 				"routes/",
-				"main.ts",
-				"dev.ts"
+				"dev.ts",
+				"main.ts"
 			],
 			"exclude": []
 		},
@@ -42,12 +23,31 @@
 			"useTabs": true
 		}
 	},
-	"tasks": {
-		"start": "deno run -A --watch=static/,routes/ dev.ts"
+	"lint": {
+		"files": {
+			"include": [
+				"components/",
+				"islands/",
+				"routes/",
+				"dev.ts",
+				"main.ts"
+			],
+			"exclude": []
+		},
+		"rules": {
+			"exclude": [
+				"no-unused-vars"
+			],
+			"include": [
+				"ban-untagged-todo"
+			],
+			"tags": [
+				"recommended"
+			]
+		}
 	},
 	"importMap": "./import_map.json",
-	"compilerOptions": {
-		"jsx": "react-jsx",
-		"jsxImportSource": "preact"
+	"tasks": {
+		"start": "deno run -A --watch=static/,routes/ dev.ts"
 	}
 }
