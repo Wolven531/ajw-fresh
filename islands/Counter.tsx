@@ -11,10 +11,10 @@ export default function Counter(props: CounterProps) {
 	return (
 		<div>
 			<p>{count}</p>
-			<Button onClick={() => setCount((oldCount) => oldCount - 1)}>
+			<Button className='m-1 p-1 bg-red-300' onClick={() => setCount((oldCount) => oldCount - 1)}>
 				-1
 			</Button>
-			<Button onClick={() => setCount((oldCount) => oldCount + 1)}>
+			<Button className='m-1 p-1 bg-green-300' onClick={() => setCount((oldCount) => oldCount + 1)}>
 				+1
 			</Button>
 		</div>

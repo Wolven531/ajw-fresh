@@ -15,9 +15,10 @@ export const handler: Handlers = {
 
 export default function HomePage() {
 	return (
-		<div>
+		<div className='border-2 border-blue-500 p-1 align-middle text-center max-w-md m-auto mt-1'>
 			<img
 				alt='the fresh logo: a sliced lemon dripping with juice'
+				className='m-auto p-2'
 				height='100px'
 				src='/logo.svg'
 			/>
