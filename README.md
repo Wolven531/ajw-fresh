@@ -1,11 +1,9 @@
 # fresh project
 
-### Usage
-
-Start the project:
+## Usage
 
 ```
 deno task start
 ```
 
-This will watch the project directory and restart as necessary.
+This will launch a local server and watch the project directory (restarting as needed)
