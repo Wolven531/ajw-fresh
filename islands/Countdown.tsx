@@ -2,9 +2,11 @@ import { useEffect, useMemo, useState } from 'preact/hooks';
 
 const timeFmt = new Intl.RelativeTimeFormat('en-US');
 
-export default function Countdown(props: { targetTimestamp: string }) {
-	const targetTimestamp = new Date(props.targetTimestamp).getTime();
+export interface ICountdownProps {
+	targetTimestamp: number;
+}
 
+export default function Countdown({ targetTimestamp }: ICountdownProps) {
 	const [runningTimestamp, setRunningTimestamp] = useState(Date.now());
 
 	// create interval to update `runningTimestamp` every second with current
@@ -21,7 +23,7 @@ export default function Countdown(props: { targetTimestamp: string }) {
 		}, 1000);
 
 		return () => clearInterval(timer);
-	}, [props.targetTimestamp]);
+	}, [targetTimestamp]);
 
 	// format remaining time using `Intl.RelativeTimeFormat`
 	const secondsLeft = useMemo(() =>
