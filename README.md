@@ -1,5 +1,7 @@
 # fresh project
 
+This project uses Deno and Fresh
+
 ## Usage
 
 ```
