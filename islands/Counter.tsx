@@ -1,11 +1,11 @@
 import { useState } from 'preact/hooks';
 import { Button } from '../components/Button.tsx';
 
-interface CounterProps {
+interface ICounterProps {
 	start: number;
 }
 
-export default function Counter(props: CounterProps) {
+export default function Counter(props: ICounterProps) {
 	const [count, setCount] = useState(props.start);
 
 	return (
