@@ -1,5 +1,14 @@
 import type { Handlers } from '$fresh/server.ts';
-import Counter from '../islands/Counter.tsx';
+import { Changelog, ILog } from '../components/Changelog.tsx';
+// import Counter from '../islands/Counter.tsx';
+
+// TODO(@wolven531) - clean this up
+const logs: ILog[] = [
+	{
+		message: 'Add changelog',
+		timestamp: new Date(2023, 0, 24, 19, 25).getTime(),
+	},
+];
 
 export const handler: Handlers = {
 	GET: async (req, ctx) => {
@@ -22,8 +31,12 @@ export default function HomePage() {
 				height='100px'
 				src='/logo.svg'
 			/>
-			<p>Hello</p>
-			<Counter start={3} />
+			{
+				/* <p>Hello</p>
+					<Counter start={3} />
+				*/
+			}
+			<Changelog logs={logs} />
 		</div>
 	);
 }
