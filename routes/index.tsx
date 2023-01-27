@@ -1,14 +1,7 @@
 import type { Handlers } from '$fresh/server.ts';
-import { Changelog, ILog } from '../components/Changelog.tsx';
+import { Changelog } from '../components/Changelog.tsx';
 // import Counter from '../islands/Counter.tsx';
-
-// TODO(@wolven531) - clean this up
-const logs: ILog[] = [
-	{
-		message: 'Add changelog',
-		timestamp: new Date(2023, 0, 24, 19, 25).getTime(),
-	},
-];
+import logs from '../static/changelog.json' assert { type: 'json' };
 
 export const handler: Handlers = {
 	GET: async (req, ctx) => {
