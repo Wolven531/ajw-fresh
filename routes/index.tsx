@@ -17,18 +17,6 @@ export const handler: Handlers = {
 };
 
 const HomePage = () => {
-	// TODO(@wolven531) - figure out why below does NOT work here
-	// console.info('[HomePage] Loaded');
-
-	// window.document.title = 'Home';
-	
-	// TODO(@wolven531) - figure out why useEffect does NOT work here
-	// useEffect(() => {
-	// 	console.info('[HomePage] Loaded');
-
-	// 	window.document.title = 'Home';
-	// }, []);
-
 	return (
 		<div className='border-2 border-blue-500 p-1 align-middle text-center max-w-md m-auto mt-1'>
 			<img

@@ -1,5 +1,5 @@
 import type { Handlers } from '$fresh/server.ts';
-import { HtmlParserForm } from '../components/HtmlParserForm.tsx';
+import { HtmlParserForm } from '../islands/HtmlParserForm.tsx';
 
 export const handler: Handlers = {
 	GET: async (req, ctx) => {
