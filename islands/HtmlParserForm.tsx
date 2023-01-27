@@ -8,8 +8,6 @@ export const HtmlParserForm: FunctionComponent = () => {
 
 	useEffect(() => {
 		console.info('[HtmlParserForm] Loaded');
-
-		window.document.title = 'HtmlParserForm';
 	}, []);
 
 	return (
