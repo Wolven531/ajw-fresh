@@ -1,4 +1,5 @@
 import type { Handlers } from '$fresh/server.ts';
+// import { useEffect } from 'preact/hooks';
 import { Changelog } from '../components/Changelog.tsx';
 // import Counter from '../islands/Counter.tsx';
 import logs from '../static/changelog.json' assert { type: 'json' };
@@ -15,7 +16,19 @@ export const handler: Handlers = {
 	},
 };
 
-export default function HomePage() {
+const HomePage = () => {
+	// TODO(@wolven531) - figure out why below does NOT work here
+	// console.info('[HomePage] Loaded');
+
+	// window.document.title = 'Home';
+	
+	// TODO(@wolven531) - figure out why useEffect does NOT work here
+	// useEffect(() => {
+	// 	console.info('[HomePage] Loaded');
+
+	// 	window.document.title = 'Home';
+	// }, []);
+
 	return (
 		<div className='border-2 border-blue-500 p-1 align-middle text-center max-w-md m-auto mt-1'>
 			<img
@@ -32,4 +45,6 @@ export default function HomePage() {
 			<Changelog logs={logs} />
 		</div>
 	);
-}
+};
+
+export default HomePage;
