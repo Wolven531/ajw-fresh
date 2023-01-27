@@ -1,6 +1,7 @@
 import type { Handlers } from '$fresh/server.ts';
 // import { useEffect } from 'preact/hooks';
 import { Changelog } from '../components/Changelog.tsx';
+import TitleSetter from '../islands/TitleSetter.tsx';
 // import Counter from '../islands/Counter.tsx';
 import logs from '../static/changelog.json' assert { type: 'json' };
 
@@ -30,6 +31,7 @@ const HomePage = () => {
 					<Counter start={3} />
 				*/
 			}
+			<TitleSetter windowTitle='Home' />
 			<Changelog logs={logs} />
 		</div>
 	);
