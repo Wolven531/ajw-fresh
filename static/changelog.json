@@ -1,0 +1,10 @@
+[
+	{
+		"message": "Add changelog",
+		"timestamp": 1674617100000
+	},
+	{
+		"message": "Clean up log loading. Add parse page.",
+		"timestamp": 1674800439900
+	}
+]
