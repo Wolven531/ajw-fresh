@@ -1,4 +1,6 @@
 import type { Handlers, PageProps } from '$fresh/server.ts';
+import { Button } from '../components/Button.tsx';
+
 const NAMES = ['alice', 'bob', 'charlie', 'dave', 'eve', 'frank'].sort();
 
 interface IResponseData {
@@ -36,7 +38,7 @@ export default function SearchPage({ data }: PageProps<IResponseData>) {
 				method='POST'
 			>
 				<input type='text' name='q' value={query} />
-				<button type='submit'>Search</button>
+				<Button type='submit'>Search</Button>
 			</form>
 			{results.length < 1 && <h3>No results</h3>}
 			{results.length > 0 && (

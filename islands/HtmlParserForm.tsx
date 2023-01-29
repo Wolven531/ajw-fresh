@@ -1,5 +1,6 @@
 import type { FunctionComponent, JSX } from 'preact';
 import { useEffect } from 'preact/hooks';
+import { Button } from '../components/Button.tsx';
 
 /**
  * This island features a form which parses HTML files into user friendly display
@@ -38,12 +39,12 @@ export const HtmlParserForm: FunctionComponent = () => {
 					className='block border-1 border-black mx-auto p-1 text-center'
 					type='file'
 				/>
-				<button
+				<Button
 					className='border-1 border-green-900 my-2 p-1 hover:bg-green-700 hover:text-white hover:font-bold'
 					type='submit'
 				>
 					Parse
-				</button>
+				</Button>
 			</form>
 		</article>
 	);
