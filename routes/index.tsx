@@ -1,6 +1,7 @@
 import type { Handlers } from '$fresh/server.ts';
 // import { useEffect } from 'preact/hooks';
 import { Changelog } from '../components/Changelog.tsx';
+import { Navigation } from '../components/Navigation.tsx';
 import TitleSetter from '../islands/TitleSetter.tsx';
 // import Counter from '../islands/Counter.tsx';
 import logs from '../static/changelog.json' assert { type: 'json' };
@@ -19,7 +20,7 @@ export const handler: Handlers = {
 
 const HomePage = () => {
 	return (
-		<div className='border-2 border-blue-500 p-1 align-middle text-center max-w-md m-auto mt-1'>
+		<main className='border-2 border-blue-500 p-1 align-middle text-center max-w-md m-auto mt-1'>
 			<img
 				alt='the fresh logo: a sliced lemon dripping with juice'
 				className='m-auto p-2'
@@ -33,7 +34,8 @@ const HomePage = () => {
 			}
 			<TitleSetter windowTitle='Home' />
 			<Changelog logs={logs} />
-		</div>
+			<Navigation />
+		</main>
 	);
 };
 
