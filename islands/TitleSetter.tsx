@@ -1,11 +1,21 @@
-import { Fragment } from 'preact';
 import type { FunctionComponent } from 'preact';
 import { useEffect } from 'preact/hooks';
 
+/**
+ * Properies to pass to TitleSetter component
+ */
 export interface ITitleSetterProps {
+	/**
+	 * Value to assign to browser window title
+	 */
 	windowTitle: string;
 }
 
+/**
+ * This component sets the browser window title when mounted; it has no visual appearance
+ *
+ * @deprecated Use `import { Head } from '$fresh/runtime.ts'` instead
+ */
 export const TitleSetter: FunctionComponent<ITitleSetterProps> = (props) => {
 	useEffect(() => {
 		window.document.title = props.windowTitle;
@@ -15,7 +25,6 @@ export const TitleSetter: FunctionComponent<ITitleSetterProps> = (props) => {
 	// return <></>; // broken
 	// return null; // broken
 	// return <h3>{props.windowTitle}</h3>;
-	// return <div />;
 	return <div style={{ display: 'none' }} />;
 };
 
