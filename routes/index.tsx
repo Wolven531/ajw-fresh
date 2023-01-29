@@ -3,7 +3,6 @@ import type { Handlers } from '$fresh/server.ts';
 // import { useEffect } from 'preact/hooks';
 import { Changelog } from '../components/Changelog.tsx';
 import { Navigation } from '../components/Navigation.tsx';
-// import { Counter } from '../islands/Counter.tsx';
 import logs from '../static/changelog.json' assert { type: 'json' };
 
 export const handler: Handlers = {
@@ -31,11 +30,6 @@ const HomePage = () => {
 					height='100px'
 					src='/logo.svg'
 				/>
-				{
-					/* <p>Hello</p>
-					<Counter start={3} />
-				*/
-				}
 				<Changelog logs={logs} />
 				<Navigation />
 			</main>

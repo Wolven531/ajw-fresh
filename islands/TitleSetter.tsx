@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'preact';
 import { useEffect } from 'preact/hooks';
 
 /**
- * Properies to pass to TitleSetter component
+ * Properties to pass to TitleSetter island
  */
 export interface ITitleSetterProps {
 	/**
@@ -12,7 +12,7 @@ export interface ITitleSetterProps {
 }
 
 /**
- * This component sets the browser window title when mounted; it has no visual appearance
+ * This island sets the browser window title when mounted; it has no visual appearance
  *
  * @deprecated Use `import { Head } from '$fresh/runtime.ts'` instead
  */

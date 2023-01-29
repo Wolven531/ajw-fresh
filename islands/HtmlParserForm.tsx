@@ -1,6 +1,9 @@
 import type { FunctionComponent, JSX } from 'preact';
 import { useEffect } from 'preact/hooks';
 
+/**
+ * This island features a form which parses HTML files into user friendly display
+ */
 export const HtmlParserForm: FunctionComponent = () => {
 	const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = (evt) => {
 		evt.preventDefault();
@@ -38,6 +41,11 @@ export const HtmlParserForm: FunctionComponent = () => {
 	);
 };
 
+/**
+ * This function uses the web DOMParser API to parse HTML into more useful info
+ *
+ * @param htmlText String of HTML to parse
+ */
 const parseInfo = (htmlText: string) => {
 	const parser = new DOMParser();
 

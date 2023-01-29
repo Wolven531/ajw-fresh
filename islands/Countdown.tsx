@@ -3,10 +3,20 @@ import { useEffect, useMemo, useState } from 'preact/hooks';
 
 const timeFmt = new Intl.RelativeTimeFormat('en-US');
 
+/**
+ * Properties to pass to Countdown island
+ */
 export interface ICountdownProps {
+	/**
+	 * Timestamp (UTC milliseconds) until render changes
+	 */
 	targetTimestamp: number;
 }
 
+/**
+ * This island features a display that automatically counts down to a target time,
+ * then changes the display after the time has occurred
+ */
 export const Countdown: FunctionComponent<ICountdownProps> = (
 	{ targetTimestamp },
 ) => {
@@ -25,7 +35,9 @@ export const Countdown: FunctionComponent<ICountdownProps> = (
 			});
 		}, 1000);
 
-		return () => clearInterval(timer);
+		return () => {
+			clearInterval(timer);
+		};
 	}, [targetTimestamp]);
 
 	// format remaining time using `Intl.RelativeTimeFormat`
@@ -37,7 +49,7 @@ export const Countdown: FunctionComponent<ICountdownProps> = (
 			'seconds',
 		), [runningTimestamp, targetTimestamp]);
 
-	// if target has passed, stop counting down
+	// target has passed, stop counting down
 	if (runningTimestamp > targetTimestamp) {
 		return <span>🎉</span>;
 	}
