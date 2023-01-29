@@ -34,6 +34,7 @@ export const HtmlParserForm: FunctionComponent = () => {
 			<h2 className='font-bold mb-2'>HTML Parser Form</h2>
 			<form onSubmit={handleSubmit}>
 				<input
+					accept='.html'
 					className='block border-1 border-black mx-auto p-1 text-center'
 					type='file'
 				/>
@@ -58,9 +59,27 @@ const parseInfo = (htmlText: string) => {
 
 	const doc = parser.parseFromString(htmlText, 'text/html');
 
-	const theads = Array.from(doc.querySelectorAll('table > thead'));
+	// validation
+	const title = doc.querySelector('title');
 
-	console.info(theads.map((thead) => thead.textContent?.trim()));
+	if (!title) {
+		console.warn('Unable to parse document title');
+		return;
+	}
+
+	if (title.textContent !== 'Robinhood') {
+		console.warn('Unsupported file');
+		return;
+	}
+
+	// processing
+	const tables = Array.from(doc.querySelectorAll('table'));
+
+	tables.forEach((table) => {
+		const theads = Array.from(table.querySelectorAll('thead'));
+
+		console.info(theads.map((thead) => thead.textContent?.trim()));
+	});
 };
 
 export default HtmlParserForm;
