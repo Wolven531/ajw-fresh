@@ -15,7 +15,7 @@ export function Navigation() {
 	return (
 		<nav className='border-1 border-green-500 flex flex-row content-center justify-between p-1'>
 			<NavLink href='/' content='Home' />
-			<NavLink href='/parse' content='Parser' />
+			<NavLink href='/parser' content='Parser' />
 			<NavLink href='/countdown' content='Countdown' />
 			<NavLink href='/about' content='About' />
 		</nav>
