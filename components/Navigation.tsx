@@ -22,7 +22,7 @@ export const NavLink = ({ content, href }: INavLinkProps) => {
  */
 export const Navigation = () => {
 	return (
-		<nav className='border-1 border-green-500 flex flex-row content-center justify-between p-1'>
+		<nav className='border-1 border-green-500 flex flex-row content-center justify-between m-1 p-1'>
 			<NavLink href='/' content='Home' />
 			<NavLink href='/parser' content='Parser' />
 			<NavLink href='/countdown' content='Countdown' />
