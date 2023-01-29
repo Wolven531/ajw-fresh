@@ -31,11 +31,15 @@ export const HtmlParserForm: FunctionComponent = () => {
 
 	return (
 		<article className='border-1 border-black'>
-			<h2 className='font-bold'>HTML Parser Form</h2>
+			<h2 className='font-bold mb-2'>HTML Parser Form</h2>
 			<form onSubmit={handleSubmit}>
-				<input type='file' />
-				<br />
-				<button type='submit'>Parse</button>
+				<input type='file' className='block border-1 border-black mx-auto p-1 text-center' />
+				<button
+					type='submit'
+					className='border-1 border-green-900 my-2 p-1 hover:bg-green-700 hover:text-white hover:font-bold'
+				>
+					Parse
+				</button>
 			</form>
 		</article>
 	);
