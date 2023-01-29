@@ -24,7 +24,7 @@ export const ParsePage = () => {
 			<main className='border-2 border-blue-500 p-1 align-middle text-center max-w-md m-auto mt-1'>
 				<Navigation />
 				<article className='mb-2'>
-					<p>First things first.</p>
+					<h3 className='font-bold'>First things first</h3>
 					<ol className='list-decimal list-inside text-left'>
 						<li>
 							This tool does not upload information to a server
