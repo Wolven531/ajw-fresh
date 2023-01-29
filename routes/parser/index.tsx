@@ -22,8 +22,28 @@ export const ParsePage = () => {
 				<title>Parser</title>
 			</Head>
 			<main className='border-2 border-blue-500 p-1 align-middle text-center max-w-md m-auto mt-1'>
-				<HtmlParserForm />
 				<Navigation />
+				<article className='mb-2'>
+					<p>First things first.</p>
+					<ol className='list-decimal list-inside text-left'>
+						<li>
+							This tool does not upload information to a server
+						</li>
+						<li>
+							This tool parses all files locally (in your browser)
+						</li>
+						<li>
+							This tool is provided "as-is", and may have bugs
+						</li>
+						<li>
+							Current Supported Formats
+							<ul className='text-center'>
+								<li>Robinhood monthly statement HTML export</li>
+							</ul>
+						</li>
+					</ol>
+				</article>
+				<HtmlParserForm />
 			</main>
 		</>
 	);
