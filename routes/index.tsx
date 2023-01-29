@@ -24,6 +24,7 @@ const HomePage = () => {
 				<title>Home</title>
 			</Head>
 			<main className='border-2 border-blue-500 p-1 align-middle text-center max-w-md m-auto mt-1'>
+				<Navigation />
 				<img
 					alt='the fresh logo: a sliced lemon dripping with juice'
 					className='m-auto p-2'
@@ -31,7 +32,6 @@ const HomePage = () => {
 					src='/logo.svg'
 				/>
 				<Changelog logs={logs} />
-				<Navigation />
 			</main>
 		</>
 	);

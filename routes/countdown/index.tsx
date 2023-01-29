@@ -12,12 +12,12 @@ export default function Page() {
 				<title>Countdown</title>
 			</Head>
 			<main className='border-2 border-blue-500 p-1 align-middle text-center max-w-md m-auto mt-1'>
+				<Navigation />
 				<h1 className='font-bold'>Countdown</h1>
 				<p>
 					The big event is happening{' '}
 					<Countdown targetTimestamp={targetTimestamp} />.
 				</p>
-				<Navigation />
 			</main>
 		</>
 	);
