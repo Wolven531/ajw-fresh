@@ -60,15 +60,18 @@ const parseInfo = (htmlText: string) => {
 	const doc = parser.parseFromString(htmlText, 'text/html');
 
 	// validation
+	let err: string | undefined;
+
 	const title = doc.querySelector('title');
 
 	if (!title) {
-		console.warn('Unable to parse document title');
-		return;
+		err = 'Unable to parse document title';
+	} else if (title.textContent !== 'Robinhood') {
+		err = 'Unsupported file';
 	}
 
-	if (title.textContent !== 'Robinhood') {
-		console.warn('Unsupported file');
+	if (err) {
+		console.warn(err);
 		return;
 	}
 
@@ -76,9 +79,32 @@ const parseInfo = (htmlText: string) => {
 	const tables = Array.from(doc.querySelectorAll('table'));
 
 	tables.forEach((table) => {
-		const theads = Array.from(table.querySelectorAll('thead'));
+		const thead = table.querySelector('thead');
 
-		console.info(theads.map((thead) => thead.textContent?.trim()));
+		if (!thead) {
+			return;
+		}
+
+		const theadRows = thead.querySelectorAll('tr');
+
+		if (theadRows.length < 2) {
+			return;
+		}
+
+		const header = theadRows.item(0).querySelector('h3');
+		const columns = Array.from(theadRows.item(1).querySelectorAll('th'));
+
+		if (!header) {
+			return;
+		}
+
+		// console.info(header.textContent?.trim());
+		// console.info(columns.map((col) => col.textContent?.trim()).join(', '));
+
+		console.table(
+			header.textContent?.trim(),
+			columns.map((col) => col.textContent?.trim() ?? ''),
+		);
 	});
 };
 
