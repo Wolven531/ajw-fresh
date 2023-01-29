@@ -6,7 +6,10 @@ export default function App(props: AppProps) {
 		<>
 			<Head>
 				<meta name='author' content='Anthony Williams' />
-				<meta name='description' content='Website by Anthony Williams, built using Fresh + Deno' />
+				<meta
+					name='description'
+					content='Website by Anthony Williams, built using Fresh + Deno'
+				/>
 			</Head>
 			<props.Component />
 		</>
