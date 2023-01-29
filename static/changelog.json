@@ -1,10 +1,14 @@
 [
 	{
-		"message": "Add changelog",
-		"timestamp": 1674617100000
+		"message": "Add navigation",
+		"timestamp": 1674962635672
 	},
 	{
 		"message": "Clean up log loading. Add parse page.",
 		"timestamp": 1674800439900
+	},
+	{
+		"message": "Add changelog",
+		"timestamp": 1674617100000
 	}
 ]
