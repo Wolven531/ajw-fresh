@@ -10,6 +10,7 @@
 				"components/",
 				"islands/",
 				"routes/",
+				"services/",
 				"dev.ts",
 				"main.ts"
 			],
@@ -29,6 +30,7 @@
 				"components/",
 				"islands/",
 				"routes/",
+				"services/",
 				"dev.ts",
 				"main.ts"
 			],
