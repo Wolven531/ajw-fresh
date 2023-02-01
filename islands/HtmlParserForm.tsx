@@ -2,6 +2,7 @@ import type { FunctionComponent, JSX } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import type { IParsedTable } from 'types';
 import { Button } from '../components/Button.tsx';
+import { ParsedTable } from '../components/ParsedTable.tsx';
 import { ValidationService } from '../services/ValidationService.ts';
 
 /**
@@ -55,17 +56,10 @@ export const HtmlParserForm: FunctionComponent = () => {
 				<>
 					<h3>Parsed Tables</h3>
 					{parsedTables.map((table, ind) => (
-						<section
-							className='border-1 border-green-300'
+						<ParsedTable
 							key={table.title.concat('-', String(ind))}
-						>
-							<h4 className='font-bold'>
-								{table.title} ({table.rows.length} rows)
-							</h4>
-							{table.columnTitles.map((col) => (
-								<p key={col}>{col}</p>
-							))}
-						</section>
+							table={table}
+						/>
 					))}
 				</>
 			)}
