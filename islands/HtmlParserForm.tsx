@@ -114,9 +114,10 @@ const parseInfo = (htmlText: string): IParsedTable[] => {
 
 		parsedTables.push({
 			columnTitles: columns.map((col) => col.textContent?.trim() ?? ''),
-			title: header.textContent?.trim() ?? '',
+			originalHTML: table.outerHTML,
 			// slice 1 to remove header row
 			rows: allRows.slice(1).map((row) => row.outerHTML),
+			title: header.textContent?.trim() ?? '',
 		});
 
 		// console.info(header.textContent?.trim());
