@@ -1,6 +1,7 @@
 import type { FunctionComponent, JSX } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { Button } from '../components/Button.tsx';
+import { ValidationService } from '../services/ValidationService.ts';
 
 /**
  * This island features a form which parses HTML files into user friendly display
@@ -56,25 +57,13 @@ export const HtmlParserForm: FunctionComponent = () => {
  * @param htmlText String of HTML to parse
  */
 const parseInfo = (htmlText: string) => {
-	const parser = new DOMParser();
-
-	const doc = parser.parseFromString(htmlText, 'text/html');
-
-	// validation
-	let err: string | undefined;
-
-	const title = doc.querySelector('title');
-
-	if (!title) {
-		err = 'Unable to parse document title';
-	} else if (title.textContent !== 'Robinhood') {
-		err = 'Unsupported file';
-	}
-
-	if (err) {
-		console.warn(err);
+	if (!ValidationService.isRobinhoodDocument(htmlText)) {
+		console.warn('Unsupported file');
 		return;
 	}
+
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(htmlText, 'text/html');
 
 	// processing
 	const tables = Array.from(doc.querySelectorAll('table'));
