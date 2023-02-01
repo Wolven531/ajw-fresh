@@ -1,4 +1,4 @@
-import type { IValidationService } from '../types.d.ts';
+import type { IValidationService } from 'types';
 
 export const ValidationService: IValidationService = {
 	isHTMLString: (val?: string) => {

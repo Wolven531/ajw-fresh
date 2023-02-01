@@ -1,5 +1,5 @@
 import type { Handlers, PageProps } from '$fresh/server.ts';
-import type { IGithubUser } from '../../types.d.ts';
+import type { IGithubUser } from 'types';
 
 export const handler: Handlers<IGithubUser> = {
 	GET: async (_, ctx) => {

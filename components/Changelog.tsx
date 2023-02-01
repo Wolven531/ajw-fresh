@@ -1,5 +1,5 @@
+import type { ILog } from 'types';
 import { datetimeFmt } from '../constants.ts';
-import type { ILog } from '../types.d.ts';
 
 /**
  * Properties to pass to Changelog component
