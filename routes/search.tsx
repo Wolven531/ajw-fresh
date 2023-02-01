@@ -1,12 +1,7 @@
 import type { Handlers, PageProps } from '$fresh/server.ts';
 import { Button } from '../components/Button.tsx';
-
-const NAMES = ['alice', 'bob', 'charlie', 'dave', 'eve', 'frank'].sort();
-
-interface IResponseData {
-	query: string;
-	results: string[];
-}
+import { NAMES } from '../constants.ts';
+import type { IResponseData } from '../types.d.ts';
 
 export const handler: Handlers<IResponseData> = {
 	GET: (req, ctx) => {

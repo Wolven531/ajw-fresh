@@ -1,7 +1,4 @@
-export interface IValidationService {
-	isHTMLString: (val?: string) => boolean;
-	isRobinhoodDocument: (val: string) => boolean;
-}
+import type { IValidationService } from '../types.d.ts';
 
 export const ValidationService: IValidationService = {
 	isHTMLString: (val?: string) => {

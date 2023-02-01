@@ -15,15 +15,15 @@ export interface IResponseData {
 }
 
 /**
-* Represents a logged change to the application
-*/
+ * Represents a logged change to the application
+ */
 export interface ILog {
-   /**
-	* Message describing the change(s)
-	*/
-   message: string;
-   /**
-	* Timestamp (UTC milliseconds) that changes happened
-	*/
-   timestamp: number;
+	/**
+	 * Message describing the change(s)
+	 */
+	message: string;
+	/**
+	 * Timestamp (UTC milliseconds) that changes happened
+	 */
+	timestamp: number;
 }

@@ -1,16 +1,5 @@
-/**
- * Represents a logged change to the application
- */
-export interface ILog {
-	/**
-	 * Message describing the change(s)
-	 */
-	message: string;
-	/**
-	 * Timestamp (UTC milliseconds) that changes happened
-	 */
-	timestamp: number;
-}
+import { datetimeFmt } from '../constants.ts';
+import type { ILog } from '../types.d.ts';
 
 /**
  * Properties to pass to Changelog component
@@ -40,17 +29,5 @@ export const Changelog = (props: IChangelogProps) => {
 		</article>
 	);
 };
-
-const datetimeFmt = new Intl.DateTimeFormat(
-	'en-US',
-	{
-		day: '2-digit',
-		hour: '2-digit',
-		minute: '2-digit',
-		month: '2-digit',
-		year: '2-digit',
-		timeZone: 'America/Los_Angeles',
-	},
-);
 
 export default Changelog;

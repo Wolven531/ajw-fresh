@@ -1,7 +1,6 @@
 import type { FunctionComponent } from 'preact';
 import { useEffect, useMemo, useState } from 'preact/hooks';
-
-const timeFmt = new Intl.RelativeTimeFormat('en-US');
+import { timeFmt } from '../constants.ts';
 
 /**
  * Properties to pass to Countdown island
