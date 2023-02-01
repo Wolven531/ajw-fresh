@@ -11,8 +11,10 @@
 				"islands/",
 				"routes/",
 				"services/",
+				"constants.ts",
 				"dev.ts",
-				"main.ts"
+				"main.ts",
+				"types.d.ts"
 			],
 			"exclude": []
 		},
@@ -31,8 +33,10 @@
 				"islands/",
 				"routes/",
 				"services/",
+				"constants.ts",
 				"dev.ts",
-				"main.ts"
+				"main.ts",
+				"types.d.ts"
 			],
 			"exclude": []
 		},
