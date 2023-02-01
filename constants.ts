@@ -1,3 +1,5 @@
+// ~~~~~ Formatting constants
+
 export const datetimeFmt = new Intl.DateTimeFormat(
 	'en-US',
 	{
@@ -11,6 +13,8 @@ export const datetimeFmt = new Intl.DateTimeFormat(
 );
 
 export const timeFmt = new Intl.RelativeTimeFormat('en-US');
+
+// ~~~~~ Collection constants
 
 // Jokes courtesy of https://punsandoneliners.com/randomness/programmer-jokes/
 export const JOKES = [
@@ -27,3 +31,8 @@ export const JOKES = [
 ];
 
 export const NAMES = ['alice', 'bob', 'charlie', 'dave', 'eve', 'frank'].sort();
+
+// ~~~~~ String constants
+
+export const DEFAULT_COLUMN_TITLE = '';
+export const DEFAULT_TABLE_TITLE = '';
