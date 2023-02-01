@@ -1,5 +1,5 @@
 import type { HandlerContext } from '$fresh/server.ts';
-import { JOKES } from '../../constants.ts';
+import { JOKES } from 'constants';
 
 export const handler = (_req: Request, _ctx: HandlerContext): Response => {
 	const randomIndex = Math.floor(Math.random() * JOKES.length);

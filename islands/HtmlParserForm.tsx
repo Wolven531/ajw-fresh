@@ -1,3 +1,4 @@
+import { DEFAULT_COLUMN_TITLE, DEFAULT_TABLE_TITLE } from 'constants';
 import type { FunctionComponent, JSX } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import type { IParsedTable } from 'types';
@@ -84,17 +85,24 @@ const parseInfo = (htmlText: string): IParsedTable[] => {
 	// processing
 	const tables = Array.from(doc.querySelectorAll('table'));
 	const parsedTables: IParsedTable[] = [];
+	const unknownTables: HTMLTableElement[] = [];
 
 	tables.forEach((table) => {
 		const thead = table.querySelector('thead');
 
 		if (!thead) {
+			console.warn('missing thead');
+			unknownTables.push(table);
+
 			return;
 		}
 
 		const theadRows = thead.querySelectorAll('tr');
 
 		if (theadRows.length < 2) {
+			console.warn('missing thead rows');
+			unknownTables.push(table);
+
 			return;
 		}
 
@@ -103,25 +111,27 @@ const parseInfo = (htmlText: string): IParsedTable[] => {
 		const allRows = Array.from(table.querySelectorAll('tr'));
 
 		if (!header) {
+			console.warn('missing header');
+			unknownTables.push(table);
+
 			return;
 		}
 
 		parsedTables.push({
-			columnTitles: columns.map((col) => col.textContent?.trim() ?? ''),
+			columnTitles: columns.map((col) =>
+				col.textContent?.trim() ?? DEFAULT_COLUMN_TITLE
+			),
 			originalHTML: table.outerHTML,
 			// slice 1 to remove header row
 			rows: allRows.slice(1).map((row) => row.outerHTML),
-			title: header.textContent?.trim() ?? '',
+			title: header.textContent?.trim() ?? DEFAULT_TABLE_TITLE,
 		});
-
-		// console.info(header.textContent?.trim());
-		// console.info(columns.map((col) => col.textContent?.trim()).join(', '));
-
-		// console.table(
-		// 	header.textContent?.trim(),
-		// 	columns.map((col) => col.textContent?.trim() ?? ''),
-		// );
 	});
+
+	if (unknownTables.length > 0) {
+		console.warn('Unknown tables follow below');
+		console.warn(unknownTables);
+	}
 
 	return parsedTables;
 };

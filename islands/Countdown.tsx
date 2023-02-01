@@ -1,6 +1,6 @@
+import { timeFmt } from 'constants';
 import type { FunctionComponent } from 'preact';
 import { useEffect, useMemo, useState } from 'preact/hooks';
-import { timeFmt } from '../constants.ts';
 
 /**
  * Properties to pass to Countdown island

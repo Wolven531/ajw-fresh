@@ -1,7 +1,7 @@
 import type { Handlers, PageProps } from '$fresh/server.ts';
+import { NAMES } from 'constants';
 import type { IResponseData } from 'types';
 import { Button } from '../components/Button.tsx';
-import { NAMES } from '../constants.ts';
 
 export const handler: Handlers<IResponseData> = {
 	GET: (req, ctx) => {
