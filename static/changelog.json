@@ -1,5 +1,9 @@
 [
 	{
+		"message": "Add validation, start table render",
+		"timestamp": 1675235391418
+	},
+	{
 		"message": "Add basic style",
 		"timestamp": 1674984280493
 	},
@@ -8,7 +12,7 @@
 		"timestamp": 1674962635672
 	},
 	{
-		"message": "Clean up log loading. Add parse page.",
+		"message": "Improve log loading, add parser page",
 		"timestamp": 1674800439900
 	},
 	{
