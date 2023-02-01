@@ -1,5 +1,6 @@
 import type { FunctionComponent, JSX } from 'preact';
-import { useEffect } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
+import type { IParsedTable } from 'types';
 import { Button } from '../components/Button.tsx';
 import { ValidationService } from '../services/ValidationService.ts';
 
@@ -7,6 +8,8 @@ import { ValidationService } from '../services/ValidationService.ts';
  * This island features a form which parses HTML files into user friendly display
  */
 export const HtmlParserForm: FunctionComponent = () => {
+	const [parsedTables, setParsedTables] = useState<IParsedTable[]>([]);
+
 	const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = (evt) => {
 		evt.preventDefault();
 
@@ -23,7 +26,8 @@ export const HtmlParserForm: FunctionComponent = () => {
 		fileItem?.text().then((fileText) => {
 			// console.info(fileText);
 
-			parseInfo(fileText);
+			const parsed = parseInfo(fileText);
+			setParsedTables(parsed);
 		});
 	};
 
@@ -47,6 +51,24 @@ export const HtmlParserForm: FunctionComponent = () => {
 					Parse
 				</Button>
 			</form>
+			{parsedTables.length > 0 && (
+				<>
+					<h3>Parsed Tables</h3>
+					{parsedTables.map((table, ind) => (
+						<section
+							className='border-1 border-green-300'
+							key={table.title.concat('-', String(ind))}
+						>
+							<h4 className='font-bold'>
+								{table.title} ({table.rows.length} rows)
+							</h4>
+							{table.columnTitles.map((col) => (
+								<p key={col}>{col}</p>
+							))}
+						</section>
+					))}
+				</>
+			)}
 		</article>
 	);
 };
@@ -56,10 +78,10 @@ export const HtmlParserForm: FunctionComponent = () => {
  *
  * @param htmlText String of HTML to parse
  */
-const parseInfo = (htmlText: string) => {
+const parseInfo = (htmlText: string): IParsedTable[] => {
 	if (!ValidationService.isRobinhoodDocument(htmlText)) {
 		console.warn('Unsupported file');
-		return;
+		return [];
 	}
 
 	const parser = new DOMParser();
@@ -67,6 +89,7 @@ const parseInfo = (htmlText: string) => {
 
 	// processing
 	const tables = Array.from(doc.querySelectorAll('table'));
+	const parsedTables: IParsedTable[] = [];
 
 	tables.forEach((table) => {
 		const thead = table.querySelector('thead');
@@ -83,19 +106,29 @@ const parseInfo = (htmlText: string) => {
 
 		const header = theadRows.item(0).querySelector('h3');
 		const columns = Array.from(theadRows.item(1).querySelectorAll('th'));
+		const allRows = Array.from(table.querySelectorAll('tr'));
 
 		if (!header) {
 			return;
 		}
 
+		parsedTables.push({
+			columnTitles: columns.map((col) => col.textContent?.trim() ?? ''),
+			title: header.textContent?.trim() ?? '',
+			// slice 1 to remove header row
+			rows: allRows.slice(1).map((row) => row.outerHTML),
+		});
+
 		// console.info(header.textContent?.trim());
 		// console.info(columns.map((col) => col.textContent?.trim()).join(', '));
 
-		console.table(
-			header.textContent?.trim(),
-			columns.map((col) => col.textContent?.trim() ?? ''),
-		);
+		// console.table(
+		// 	header.textContent?.trim(),
+		// 	columns.map((col) => col.textContent?.trim() ?? ''),
+		// );
 	});
+
+	return parsedTables;
 };
 
 export default HtmlParserForm;
