@@ -1,7 +1,7 @@
 import { DEFAULT_COLUMN_TITLE, DEFAULT_TABLE_TITLE } from 'constants';
 import type { FunctionComponent, JSX } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
-import type { IParsedTable } from 'types';
+import type { IParsedTable, ITransaction } from 'types';
 import { Button } from '../components/Button.tsx';
 import { ParsedTable } from '../components/ParsedTable.tsx';
 import { ValidationService } from '../services/ValidationService.ts';
@@ -66,6 +66,59 @@ export const HtmlParserForm: FunctionComponent = () => {
 			)}
 		</article>
 	);
+};
+
+/**
+ * This function parses a numeric value from a string containing a dollar value
+ *
+ * @param val String or null value to parse
+ */
+const parseDollarValue = (val: string | null): number => {
+	if (val === null || val.length < 1) {
+		return 0;
+	}
+
+	const trimmed = val.trim();
+	const hasDollar = trimmed.startsWith('$');
+
+	return hasDollar ? parseFloat(trimmed.substring(1)) : parseFloat(trimmed);
+};
+
+/**
+ * This function parses an HTML string for a row of HTML containing transaction data
+ *
+ * @param parser DOMParser to use (to avoid recreating every time)
+ * @param rowHtml String of HTML to parse
+ */
+const parseTransactionRow = (
+	parser: DOMParser,
+	rowHtml: string,
+): ITransaction => {
+	const rowDoc = parser.parseFromString(rowHtml, 'text/html');
+
+	const [
+		cellDescription,
+		cellSymbol,
+		cellAccountType,
+		cellTransaction,
+		cellDate,
+		cellQuantity,
+		cellPrice,
+		cellDebit,
+		cellCredit,
+	] = Array.from(rowDoc.querySelectorAll('table'));
+
+	return {
+		accountType: cellAccountType.textContent ?? '',
+		credit: parseDollarValue(cellCredit.textContent),
+		date: cellDate.textContent ?? '',
+		debit: parseDollarValue(cellDebit.textContent),
+		description: cellDescription.textContent ?? '',
+		price: parseDollarValue(cellPrice.textContent),
+		quantity: parseDollarValue(cellQuantity.textContent),
+		symbol: cellSymbol.textContent ?? '',
+		transactionType: cellTransaction.textContent ?? '',
+	};
 };
 
 /**
