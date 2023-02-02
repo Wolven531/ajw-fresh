@@ -21,7 +21,7 @@ export interface ILog {
 export interface IParsedTable {
 	columnTitles: string[]; // e.g. "Description", "Symbol", "Qty", "Price"
 	originalHTML: string;
-	rows: string[]; // HTML string data of row
+	rows: ITransaction[];
 	title: string; // e.g. "Portfolio Summary", "Account Activity"
 }
 

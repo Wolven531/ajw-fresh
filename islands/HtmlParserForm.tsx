@@ -92,8 +92,22 @@ const parseDollarValue = (val: string | null): number => {
  */
 const parseTransactionRow = (
 	parser: DOMParser,
-	rowHtml: string,
+	rowHtml: string | null,
 ): ITransaction => {
+	if (rowHtml === null || rowHtml.length < 1) {
+		return {
+			accountType: 'UNKNOWN',
+			credit: 0,
+			date: 'UNKNOWN',
+			debit: 0,
+			description: 'UNKNOWN',
+			price: 0,
+			quantity: 0,
+			symbol: 'UNKNOWN',
+			transactionType: 'UNKNOWN',
+		};
+	}
+
 	const rowDoc = parser.parseFromString(rowHtml, 'text/html');
 
 	const [
@@ -176,7 +190,9 @@ const parseInfo = (htmlText: string): IParsedTable[] => {
 			),
 			originalHTML: table.outerHTML,
 			// slice 1 to remove header row
-			rows: allRows.slice(1).map((row) => row.outerHTML),
+			rows: allRows.slice(1).map((row) =>
+				parseTransactionRow(parser, row.outerHTML)
+			),
 			title: header.textContent?.trim() ?? DEFAULT_TABLE_TITLE,
 		});
 	});
