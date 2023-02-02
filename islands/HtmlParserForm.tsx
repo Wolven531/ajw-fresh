@@ -81,6 +81,12 @@ const parseDollarValue = (val: string | null): number => {
 	const trimmed = val.trim();
 	const hasDollar = trimmed.startsWith('$');
 
+	if (trimmed.indexOf('S') > -1) {
+		console.warn(
+			`[parseDollarValue] Encountered value w/ odd pattern - "${trimmed}"`,
+		);
+	}
+
 	return hasDollar ? parseFloat(trimmed.substring(1)) : parseFloat(trimmed);
 };
 
