@@ -31,9 +31,15 @@ export interface IResponseData {
 }
 
 export interface ITransaction {
-	price: number;
-	quantity: number;
-	symbol: string;
+	accountType: string; // e.g. "Margin"
+	credit: number; // e.g. "$4.89"
+	date: string; // e.g. "12/01/2022"
+	debit: number; // e.g. "$4.29"
+	description: string; // e.g. "Baudax Bio CUSIP: 07160F404"
+	price: number; // e.g. "$10.47"
+	quantity: number; // e.g. 2.025, "81S"
+	symbol: string; // e.g. "ORC"
+	transactionType: string; // e.g. "SPR", "Buy", "COIN"
 }
 
 export interface IValidationService {
