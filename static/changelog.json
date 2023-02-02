@@ -1,5 +1,9 @@
 [
 	{
+		"message": "Start parsing Account Activity table",
+		"timestamp": 1675329684169
+	},
+	{
 		"message": "Add validation, start table render",
 		"timestamp": 1675235391418
 	},
