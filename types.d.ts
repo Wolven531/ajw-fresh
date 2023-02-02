@@ -30,6 +30,12 @@ export interface IResponseData {
 	results: string[];
 }
 
+export interface ITransaction {
+	price: number;
+	quantity: number;
+	symbol: string;
+}
+
 export interface IValidationService {
 	isHTMLString: (val?: string) => boolean;
 	isRobinhoodDocument: (val: string) => boolean;
