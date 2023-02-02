@@ -114,7 +114,26 @@ const parseTransactionRow = (
 		};
 	}
 
+	// console.log(rowHtml);
+
 	const rowDoc = parser.parseFromString(rowHtml, 'text/html');
+	const cells = rowDoc.querySelectorAll('td');
+
+	if (cells.length < 1) {
+		return {
+			accountType: 'UNKNOWN',
+			credit: 0,
+			date: 'UNKNOWN',
+			debit: 0,
+			description: 'UNKNOWN',
+			price: 0,
+			quantity: 0,
+			symbol: 'UNKNOWN',
+			transactionType: 'UNKNOWN',
+		};
+	}
+
+	// console.log(rowDoc);
 
 	const [
 		cellDescription,
@@ -126,7 +145,7 @@ const parseTransactionRow = (
 		cellPrice,
 		cellDebit,
 		cellCredit,
-	] = Array.from(rowDoc.querySelectorAll('table'));
+	] = Array.from(cells);
 
 	return {
 		accountType: cellAccountType.textContent ?? '',
@@ -170,7 +189,7 @@ const parseInfo = (htmlText: string): IParsedTable[] => {
 			return;
 		}
 
-		const theadRows = thead.querySelectorAll('tr');
+		const theadRows = table.querySelectorAll('thead > tr');
 
 		if (theadRows.length < 2) {
 			console.warn('missing thead rows');
@@ -182,6 +201,9 @@ const parseInfo = (htmlText: string): IParsedTable[] => {
 		const header = theadRows.item(0).querySelector('h3');
 		const columns = Array.from(theadRows.item(1).querySelectorAll('th'));
 		const allRows = Array.from(table.querySelectorAll('tr'));
+		const allRowsButHeader = allRows.filter((row) =>
+			row.parentElement?.tagName !== 'THEAD'
+		);
 
 		if (!header) {
 			console.warn('missing header');
@@ -190,23 +212,33 @@ const parseInfo = (htmlText: string): IParsedTable[] => {
 			return;
 		}
 
-		parsedTables.push({
-			columnTitles: columns.map((col) =>
-				col.textContent?.trim() ?? DEFAULT_COLUMN_TITLE
-			),
-			originalHTML: table.outerHTML,
-			// slice 1 to remove header row
-			rows: allRows.slice(1).map((row) =>
-				parseTransactionRow(parser, row.outerHTML)
-			),
-			title: header.textContent?.trim() ?? DEFAULT_TABLE_TITLE,
-		});
+		const title = header.textContent?.trim() ?? DEFAULT_TABLE_TITLE;
+
+		// ONLY parse Account Activity for now
+		if (title === 'Account Activity') {
+			parsedTables.push({
+				columnTitles: columns.map((col) =>
+					col.textContent?.trim() ?? DEFAULT_COLUMN_TITLE
+				),
+				originalHTML: table.outerHTML,
+				// do NOT include rows from inside the thead
+				rows: allRowsButHeader.map((
+					row,
+				) => parseTransactionRow(parser, row.outerHTML)),
+				title,
+			});
+		} else {
+			console.info(`skipping table "${title}"`);
+		}
 	});
 
 	if (unknownTables.length > 0) {
 		console.warn('Unknown tables follow below');
 		console.warn(unknownTables);
 	}
+
+	console.info('parsed the following tables');
+	console.log(parsedTables);
 
 	return parsedTables;
 };
