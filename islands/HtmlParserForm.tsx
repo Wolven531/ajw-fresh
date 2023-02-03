@@ -93,31 +93,10 @@ const parseDollarValue = (val: string | null): number => {
 /**
  * This function parses an HTML string for a row of HTML containing transaction data
  *
- * @param parser DOMParser to use (to avoid recreating every time)
  * @param rowHtml String of HTML to parse
  */
-const parseTransactionRow = (
-	parser: DOMParser,
-	rowHtml: string | null,
-): ITransaction => {
-	if (rowHtml === null || rowHtml.length < 1) {
-		return {
-			accountType: 'UNKNOWN',
-			credit: 0,
-			date: 'UNKNOWN',
-			debit: 0,
-			description: 'UNKNOWN',
-			price: 0,
-			quantity: 0,
-			symbol: 'UNKNOWN',
-			transactionType: 'UNKNOWN',
-		};
-	}
-
-	// console.log(rowHtml);
-
-	const rowDoc = parser.parseFromString(rowHtml, 'text/html');
-	const cells = rowDoc.querySelectorAll('td');
+const parseActivityRow = (row: HTMLTableRowElement): ITransaction => {
+	const cells = row.querySelectorAll('td');
 
 	if (cells.length < 1) {
 		return {
@@ -132,8 +111,6 @@ const parseTransactionRow = (
 			transactionType: 'UNKNOWN',
 		};
 	}
-
-	// console.log(rowDoc);
 
 	const [
 		cellDescription,
@@ -157,6 +134,31 @@ const parseTransactionRow = (
 		quantity: parseDollarValue(cellQuantity.textContent),
 		symbol: cellSymbol.textContent ?? '',
 		transactionType: cellTransaction.textContent ?? '',
+	};
+};
+
+/**
+ * This function parses the Account Activity HTML table for transaction data
+ *
+ * @param table HTML table to parse
+ */
+const parseAccountActivityTable = (table: HTMLTableElement) => {
+	const theadRows = table.querySelectorAll('thead > tr');
+	// first thead row is table name and other info, so use second for cols
+	const columns = Array.from(theadRows.item(1).querySelectorAll('th'));
+	const allRows = Array.from(table.querySelectorAll('tr'));
+	const allRowsButHeader = allRows.filter((row) =>
+		row.parentElement?.tagName !== 'THEAD'
+	);
+
+	return {
+		columnTitles: columns.map((col) =>
+			col.textContent?.trim() ?? DEFAULT_COLUMN_TITLE
+		),
+		originalHTML: table.outerHTML,
+		// do NOT include rows from inside the thead
+		rows: allRowsButHeader.map(parseActivityRow),
+		title: 'Account Activity',
 	};
 };
 
@@ -199,11 +201,6 @@ const parseInfo = (htmlText: string): IParsedTable[] => {
 		}
 
 		const header = theadRows.item(0).querySelector('h3');
-		const columns = Array.from(theadRows.item(1).querySelectorAll('th'));
-		const allRows = Array.from(table.querySelectorAll('tr'));
-		const allRowsButHeader = allRows.filter((row) =>
-			row.parentElement?.tagName !== 'THEAD'
-		);
 
 		if (!header) {
 			console.warn('missing header');
@@ -216,17 +213,7 @@ const parseInfo = (htmlText: string): IParsedTable[] => {
 
 		// ONLY parse Account Activity for now
 		if (title === 'Account Activity') {
-			parsedTables.push({
-				columnTitles: columns.map((col) =>
-					col.textContent?.trim() ?? DEFAULT_COLUMN_TITLE
-				),
-				originalHTML: table.outerHTML,
-				// do NOT include rows from inside the thead
-				rows: allRowsButHeader.map((
-					row,
-				) => parseTransactionRow(parser, row.outerHTML)),
-				title,
-			});
+			parsedTables.push(parseAccountActivityTable(table));
 		} else {
 			console.info(`skipping table "${title}"`);
 		}
