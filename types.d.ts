@@ -19,10 +19,16 @@ export interface ILog {
 }
 
 export interface IParsedTable {
-	columnTitles: string[]; // e.g. "Description", "Symbol", "Qty", "Price"
+	/**
+	 * e.g. "Description", "Symbol", "Qty", "Price"
+	 */
+	columnTitles: string[];
 	originalHTML: string;
 	rows: ITransaction[];
-	title: string; // e.g. "Portfolio Summary", "Account Activity"
+	/**
+	 * e.g. "Portfolio Summary", "Account Activity"
+	 */
+	title: string;
 }
 
 export interface IResponseData {
@@ -31,15 +37,42 @@ export interface IResponseData {
 }
 
 export interface ITransaction {
-	accountType: string; // e.g. "Margin"
-	credit: number; // e.g. "$4.89"
-	date: string; // e.g. "12/01/2022"
-	debit: number; // e.g. "$4.29"
-	description: string; // e.g. "Baudax Bio CUSIP: 07160F404"
-	price: number; // e.g. "$10.47"
-	quantity: number; // e.g. 2.025, "81S"
-	symbol: string; // e.g. "ORC"
-	transactionType: string; // e.g. "SPR", "Buy", "COIN"
+	/**
+	 * e.g. "Margin", "Sweep", ""
+	 */
+	accountType: string;
+	/**
+	 * e.g. "$4.89"
+	 */
+	credit: number;
+	/**
+	 * e.g. "12/01/2022"
+	 */
+	date: string;
+	/**
+	 * e.g. "$4.29"
+	 */
+	debit: number;
+	/**
+	 * e.g. "Baudax Bio CUSIP: 07160F404"
+	 */
+	description: string;
+	/**
+	 * e.g. "$10.47"
+	 */
+	price: number;
+	/**
+	 * e.g. 2.025, "81S"
+	 */
+	quantity: number;
+	/**
+	 * e.g. "ORC"
+	 */
+	symbol: string;
+	/**
+	 * e.g. "SPR", "Buy", "COIN", "Sell", "SLIP", "ACH", "CDIV", "STO", "OCA", "INT", "BTC", ""
+	 */
+	transactionType: string;
 }
 
 export interface IValidationService {
