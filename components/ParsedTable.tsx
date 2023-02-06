@@ -17,6 +17,7 @@ export const ParsedTable = ({ table }: IParsedTableProps) => {
 				transactions={table.rows}
 			/>
 			<ParsedStat
+				isDollar
 				name='Total credit'
 				statFunc={(trans) =>
 					trans.map(({ credit }) => credit).reduce(
@@ -26,6 +27,7 @@ export const ParsedTable = ({ table }: IParsedTableProps) => {
 				transactions={table.rows}
 			/>
 			<ParsedStat
+				isDollar
 				name='Total debit'
 				statFunc={(trans) =>
 					trans.map(({ debit }) => debit).reduce(
