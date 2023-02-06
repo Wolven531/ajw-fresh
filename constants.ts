@@ -12,6 +12,11 @@ export const datetimeFmt = new Intl.DateTimeFormat(
 	},
 );
 
+export const moneyFmt = new Intl.NumberFormat('en-US', {
+	currency: 'usd',
+	style: 'currency',
+});
+
 export const timeFmt = new Intl.RelativeTimeFormat('en-US');
 
 // ~~~~~ Collection constants
