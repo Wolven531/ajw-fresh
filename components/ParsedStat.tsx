@@ -2,6 +2,7 @@ import type { ITransaction } from 'types';
 import { moneyFmt } from '../constants.ts';
 
 export interface IParsedStatProps {
+	isCount?: boolean;
 	isDollar?: boolean;
 	name: string;
 	statFunc: (transactions: ITransaction[]) => number;
@@ -9,14 +10,18 @@ export interface IParsedStatProps {
 }
 
 export const ParsedStat = (
-	{ isDollar, name, transactions, statFunc }: IParsedStatProps,
+	{ isCount, isDollar, name, transactions, statFunc }: IParsedStatProps,
 ) => {
 	const value = statFunc(transactions);
 
 	return (
 		<div>
 			<p>{name}</p>
-			<p>{isDollar ? moneyFmt.format(value) : value.toFixed(2)}</p>
+			<p>
+				{isCount
+					? value.toFixed(0)
+					: (isDollar ? moneyFmt.format(value) : value.toFixed(2))}
+			</p>
 		</div>
 	);
 };
