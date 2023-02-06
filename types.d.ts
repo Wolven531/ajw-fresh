@@ -38,7 +38,10 @@ export interface IResponseData {
 
 export interface ITransaction {
 	/**
-	 * e.g. "Margin", "Sweep", ""
+	 * e.g.
+	 * - "Margin"
+	 * - "Sweep"
+	 * - ""
 	 */
 	accountType: string;
 	/**
@@ -70,7 +73,19 @@ export interface ITransaction {
 	 */
 	symbol: string;
 	/**
-	 * e.g. "SPR", "Buy", "COIN", "Sell", "SLIP", "ACH", "CDIV", "STO", "OCA", "INT", "BTC", ""
+	 * e.g.
+	 * - "SPR"
+	 * - "Buy"
+	 * - "COIN"
+	 * - "Sell"
+	 * - "SLIP" - Stock Lending Interest Program
+	 * - "ACH" - Automated Clearing House
+	 * - "CDIV" - Cash dividend
+	 * - "STO"
+	 * - "OCA" - one cancel all
+	 * - "INT" - interest
+	 * - "BTC" - bid to cancel
+	 * - ""
 	 */
 	transactionType: string;
 }
