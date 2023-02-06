@@ -1,4 +1,5 @@
 import type { ITransaction } from 'types';
+import { moneyFmt } from '../constants.ts';
 
 export interface IParsedStatProps {
 	isDollar?: boolean;
@@ -15,7 +16,7 @@ export const ParsedStat = (
 	return (
 		<div>
 			<p>{name}</p>
-			<p>{isDollar ? `$${value}` : value.toFixed(2)}</p>
+			<p>{isDollar ? moneyFmt.format(value) : value.toFixed(2)}</p>
 		</div>
 	);
 };
