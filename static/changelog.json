@@ -1,5 +1,9 @@
 [
 	{
+		"message": "Add StatGroup component",
+		"timestamp": 1675756457550
+	},
+	{
 		"message": "Add ParsedStat component",
 		"timestamp": 1675667865100
 	},
