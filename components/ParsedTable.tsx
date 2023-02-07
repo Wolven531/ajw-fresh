@@ -22,12 +22,16 @@ export const ParsedTable = ({ table }: IParsedTableProps) => {
 				<StatGroup
 					className='border-green-500'
 					name='credit'
-					transactions={table.rows.filter(({ credit }) => credit > 0)}
+					transactions={table.rows.filter(({ credit, debit }) =>
+						credit > 0 && debit === 0
+					)}
 				/>
 				<StatGroup
 					className='border-red-300'
 					name='debit'
-					transactions={table.rows.filter(({ debit }) => debit > 0)}
+					transactions={table.rows.filter(({ credit, debit }) =>
+						debit > 0 && credit === 0
+					)}
 				/>
 			</div>
 		</section>
