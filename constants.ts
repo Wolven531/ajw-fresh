@@ -37,6 +37,10 @@ export const JOKES = [
 
 export const NAMES = ['alice', 'bob', 'charlie', 'dave', 'eve', 'frank'].sort();
 
+// ~~~~~ RegEx constants
+
+export const PATTERN_DECIMAL = /^\$?(\d+(\.\d+)?)$/;
+
 // ~~~~~ String constants
 
 export const DEFAULT_COLUMN_TITLE = '';
