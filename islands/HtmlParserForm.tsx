@@ -1,4 +1,8 @@
-import { DEFAULT_COLUMN_TITLE, DEFAULT_TABLE_TITLE } from 'constants';
+import {
+	DEFAULT_COLUMN_TITLE,
+	DEFAULT_TABLE_TITLE,
+	PATTERN_DECIMAL,
+} from 'constants';
 import type { FunctionComponent, JSX } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import type { IParsedTable, ITransaction } from 'types';
@@ -69,25 +73,57 @@ export const HtmlParserForm: FunctionComponent = () => {
 };
 
 /**
- * This function parses a numeric value from a string containing a dollar value
+ * This function parses a numeric value from a string
  *
  * @param val String or null value to parse
  */
-const parseDollarValue = (val: string | null): number => {
+const parseNumber = (val: string | null): number => {
 	if (val === null || val.length < 1) {
 		return 0;
 	}
 
-	const trimmed = val.trim();
-	const hasDollar = trimmed.startsWith('$');
+	const trimmed = val.trim().replaceAll(',', '');
 
-	if (trimmed.indexOf('S') > -1) {
+	const matches = trimmed.match(PATTERN_DECIMAL);
+
+	if (!matches) {
 		console.warn(
-			`[parseDollarValue] Encountered value w/ odd pattern - "${trimmed}"`,
+			`[parseNumber] Encountered value w/ odd pattern - "${trimmed}". Using 0 in its place.`,
 		);
+
+		return 0;
 	}
 
-	return hasDollar ? parseFloat(trimmed.substring(1)) : parseFloat(trimmed);
+	return parseFloat(matches[1]); // use the first captured group
+};
+
+/**
+ * This function parses a quantity value from a string
+ *
+ * @param val String or null value to parse
+ */
+const parseQuantity = (
+	val: string | null,
+	rowDetails: Record<string, unknown>,
+): number => {
+	if (val === null || val.length < 1) {
+		return 0;
+	}
+
+	const trimmed = val.trim().replaceAll(',', '');
+
+	const matches = trimmed.match(PATTERN_DECIMAL);
+
+	if (!matches) {
+		console.warn(
+			`[parseQuantity] Encountered value w/ odd pattern - "${trimmed}". Using 0 in its place.`,
+			rowDetails,
+		);
+
+		return 0;
+	}
+
+	return parseFloat(matches[1]); // use the first captured group
 };
 
 /**
@@ -99,6 +135,11 @@ const parseActivityRow = (row: HTMLTableRowElement): ITransaction => {
 	const cells = row.querySelectorAll('td');
 
 	if (cells.length < 1) {
+		console.warn(
+			`[parseActivityRow] Unable to parse row, using UNKNOWN`,
+			row,
+		);
+
 		return {
 			accountType: 'UNKNOWN',
 			credit: 0,
@@ -126,12 +167,22 @@ const parseActivityRow = (row: HTMLTableRowElement): ITransaction => {
 
 	return {
 		accountType: cellAccountType.textContent ?? '',
-		credit: parseDollarValue(cellCredit.textContent),
+		credit: parseNumber(cellCredit.textContent),
 		date: cellDate.textContent ?? '',
-		debit: parseDollarValue(cellDebit.textContent),
+		debit: parseNumber(cellDebit.textContent),
 		description: cellDescription.textContent ?? '',
-		price: parseDollarValue(cellPrice.textContent),
-		quantity: parseDollarValue(cellQuantity.textContent),
+		price: parseNumber(cellPrice.textContent),
+		quantity: parseQuantity(cellQuantity.textContent, {
+			AccountType: cellAccountType.textContent,
+			Credit: cellCredit.textContent,
+			Date: cellDate.textContent,
+			Debit: cellDebit.textContent,
+			Description: cellDescription.textContent,
+			Price: cellPrice.textContent,
+			Quantity: cellQuantity.textContent,
+			Symbol: cellSymbol.textContent,
+			Transaction: cellTransaction.textContent,
+		}),
 		symbol: cellSymbol.textContent ?? '',
 		transactionType: cellTransaction.textContent ?? '',
 	};
