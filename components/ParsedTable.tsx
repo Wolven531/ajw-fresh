@@ -52,9 +52,15 @@ export const ParsedTable = ({ table }: IParsedTableProps) => {
 								key={t.description}
 							>
 								<p>Description - "{t.description}"</p>
-								<p>Symbol - "{t.symbol}"</p>
-								<p>Credit = {t.credit} Debit = {t.debit}</p>
-								<p>Quantity = {t.quantity} Price = {t.price}</p>
+								{t.symbol.length > 0 && (
+									<p>Symbol - "{t.symbol}"</p>
+								)}
+								{t.credit > 0 && <p>Credit = {t.credit}</p>}
+								{t.debit > 0 && <p>Debit = {t.debit}</p>}
+								{t.quantity > 0 && (
+									<p>Quantity = {t.quantity}</p>
+								)}
+								{t.price > 0 && <p>Price = {t.price}</p>}
 							</div>
 						))}
 					</div>
