@@ -29,3 +29,5 @@ export const TableExplorer: FunctionComponent<ITableExplorerProps> = (
 		</>
 	);
 };
+
+export default TableExplorer;
