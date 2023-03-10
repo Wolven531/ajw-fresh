@@ -1,5 +1,5 @@
+import { moneyFmt } from 'constants';
 import type { ITransaction } from 'types';
-import { moneyFmt } from '../constants.ts';
 
 export interface IParsedStatProps {
 	isCount?: boolean;
