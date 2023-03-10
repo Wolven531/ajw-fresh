@@ -9,6 +9,7 @@
 		"twind": "https://esm.sh/twind@0.16.17",
 		"twind/": "https://esm.sh/twind@0.16.17/",
 		"constants": "./constants.ts",
+		"utils": "./utils.ts",
 		"types": "./types.d.ts"
 	}
 }

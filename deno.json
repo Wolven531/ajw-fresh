@@ -14,6 +14,7 @@
 				"constants.ts",
 				"dev.ts",
 				"main.ts",
+				"utils.ts",
 				"types.d.ts"
 			],
 			"exclude": []
@@ -36,6 +37,7 @@
 				"constants.ts",
 				"dev.ts",
 				"main.ts",
+				"utils.ts",
 				"types.d.ts"
 			],
 			"exclude": []
