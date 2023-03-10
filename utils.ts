@@ -4,7 +4,7 @@ import {
 	PATTERN_DECIMAL,
 } from 'constants';
 import type { IParsedTable, ITransaction } from 'types';
-import ValidationService from './services/ValidationService.ts';
+import { ValidationService } from './services/ValidationService.ts';
 
 /**
  * This function parses the Account Activity HTML table for transaction data
