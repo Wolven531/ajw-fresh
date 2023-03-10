@@ -1,5 +1,9 @@
 [
 	{
+		"message": "Start TableExplorer",
+		"timestamp": 1678414238648
+	},
+	{
 		"message": "Render non-standard transactions",
 		"timestamp": 1676600157122
 	},
