@@ -17,7 +17,8 @@ import * as $10 from './routes/search.tsx';
 import * as $$0 from './islands/Countdown.tsx';
 import * as $$1 from './islands/Counter.tsx';
 import * as $$2 from './islands/HtmlParserForm.tsx';
-import * as $$3 from './islands/TitleSetter.tsx';
+import * as $$3 from './islands/TableExplorer.tsx';
+import * as $$4 from './islands/TitleSetter.tsx';
 
 const manifest = {
 	routes: {
@@ -37,7 +38,8 @@ const manifest = {
 		'./islands/Countdown.tsx': $$0,
 		'./islands/Counter.tsx': $$1,
 		'./islands/HtmlParserForm.tsx': $$2,
-		'./islands/TitleSetter.tsx': $$3,
+		'./islands/TableExplorer.tsx': $$3,
+		'./islands/TitleSetter.tsx': $$4,
 	},
 	baseUrl: import.meta.url,
 	config,
