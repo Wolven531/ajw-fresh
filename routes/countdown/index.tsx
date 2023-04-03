@@ -3,8 +3,9 @@ import { Navigation } from '../../components/Navigation.tsx';
 import { Countdown } from '../../islands/Countdown.tsx';
 
 export default function Page() {
+	const oneMinMs = 1000 * 60;
 	const now = Date.now();
-	const targetTimestamp = new Date(now + 1000 * 60).getTime();
+	const targetTimestamp = new Date(now + oneMinMs).getTime();
 
 	return (
 		<>
