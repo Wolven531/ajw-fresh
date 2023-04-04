@@ -8,7 +8,7 @@ import * as $1 from './routes/_500.tsx';
 import * as $2 from './routes/_app.tsx';
 import * as $3 from './routes/about/index.tsx';
 import * as $4 from './routes/api/joke.ts';
-import * as $5 from './routes/api/rate.ts';
+import * as $5 from './routes/api/rate.tsx';
 import * as $6 from './routes/countdown/index.tsx';
 import * as $7 from './routes/github/[username].tsx';
 import * as $8 from './routes/greet/[name].tsx';
@@ -28,7 +28,7 @@ const manifest = {
 		'./routes/_app.tsx': $2,
 		'./routes/about/index.tsx': $3,
 		'./routes/api/joke.ts': $4,
-		'./routes/api/rate.ts': $5,
+		'./routes/api/rate.tsx': $5,
 		'./routes/countdown/index.tsx': $6,
 		'./routes/github/[username].tsx': $7,
 		'./routes/greet/[name].tsx': $8,
