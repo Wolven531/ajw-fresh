@@ -2,9 +2,14 @@ import type { HandlerContext } from '$fresh/server.ts';
 // import { Head } from '$fresh/runtime.ts';
 // import { Navigation } from '../../components/Navigation.tsx';
 
+const memRatings: number[] = [];
+
 export const handler = {
 	GET: (_req: Request, _ctx: HandlerContext): Response => {
-		return new Response(JSON.stringify([]), {
+		memRatings.push(Math.round(Math.random() * 3));
+		// const ratings: any[] = [];
+
+		return new Response(JSON.stringify(memRatings), {
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -19,6 +24,8 @@ export const handler = {
 		// );
 	},
 	POST: async (_req: Request, _ctx: HandlerContext): Promise<Response> => {
+		// memRatings.push(Math.round(Math.random() * 3));
+
 		const formData = await _req.formData().catch(() => ({}));
 		const reqJson = await _req.json().catch(() => ({}));
 
