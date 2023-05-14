@@ -2,8 +2,13 @@
 	"deno.enable": true,
 	"deno.lint": true,
 	"editor.defaultFormatter": "denoland.vscode-deno",
+	// "editor.defaultFormatter": "esbenp.prettier-vscode",
+	// "editor.defaultFormatter": "rome.rome",
 	"files.insertFinalNewline": true,
 	"files.trimFinalNewlines": false,
+	"[css]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+	},
 	"[json]": {
 		"editor.defaultFormatter": "vscode.json-language-features",
 		"editor.quickSuggestions": {
@@ -25,12 +30,11 @@
 		]
 	},
 	"[typescript]": {
-		"editor.defaultFormatter": "denoland.vscode-deno"
+		// "editor.defaultFormatter": "denoland.vscode-deno"
+		// "editor.defaultFormatter": "rome.rome"
 	},
 	"[typescriptreact]": {
-		"editor.defaultFormatter": "denoland.vscode-deno"
+		// "editor.defaultFormatter": "denoland.vscode-deno"
+		// "editor.defaultFormatter": "rome.rome"
 	},
-	"[css]": {
-		"editor.defaultFormatter": "vscode.css-language-features"
-	}
 }
